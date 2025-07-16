@@ -1,7 +1,13 @@
 import pandas as pd
 import re
 import os
+import sys
 from openpyxl import Workbook
+
+if getattr(sys, 'frozen', False):
+    os.chdir(os.path.dirname(sys.executable))
+else:
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 path_of_ExeFile = os.path.abspath(__file__)  # Absolute path to executable
 
@@ -15,10 +21,11 @@ def find_txt(dir):  # The function can get all txt files
     files = []
     for file in os.listdir(dir):
         if file.endswith(".txt"):
+            print(file)
             files.append(os.path.join(file))
     return files
 
-
+print(path_of_ExeFile)
 Text_Files = find_txt(os.path.dirname(path_of_ExeFile))  # getting all txt files from directory
 
 Youtube_Regex_Pattern = r'https?://(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]+)'  # Finding all YouTube ID's from links
