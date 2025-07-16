@@ -16,7 +16,7 @@ else:path_of_ExeFile = str(Path(__file__).resolve().parent) # Absolute path to e
 print("Throw your .txt files in folder where Executable is located")
 if not path_of_ExeFile.endswith(os.sep):
     path_of_ExeFile += os.sep
-print(path_of_ExeFile)
+print(f'HERE ----> {path_of_ExeFile}')
 input("Press enter if you're ready")
 
 if sys.platform == "win32":
