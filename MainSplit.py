@@ -2,19 +2,27 @@ import pandas as pd
 import re
 import os
 import sys
+from pathlib import Path
 from openpyxl import Workbook
 
 if getattr(sys, 'frozen', False):
     os.chdir(os.path.dirname(sys.executable))
 else:
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
-path_of_ExeFile = os.path.abspath(__file__)  # Absolute path to executable
+if getattr(sys, "frozen", False):
+        path_of_ExeFile = Path(sys.executable).parent
+else:path_of_ExeFile = str(Path(__file__).resolve().parent) # Absolute path to executable
 
 print("Throw your .txt files in folder where Executable is located")
+if not path_of_ExeFile.endswith(os.sep):
+    path_of_ExeFile += os.sep
+print(path_of_ExeFile)
 input("Press enter if you're ready")
 
-path_of_ExeFile = path_of_ExeFile.replace("MainSplit.py", "")  # Changing path where's .txt files located
+if sys.platform == "win32":
+    import ctypes
+
+    ctypes.windll.kernel32.SetDllDirectoryW(None)
 
 
 def find_txt(dir):  # The function can get all txt files
@@ -24,6 +32,7 @@ def find_txt(dir):  # The function can get all txt files
             print(file)
             files.append(os.path.join(file))
     return files
+
 
 print(path_of_ExeFile)
 Text_Files = find_txt(os.path.dirname(path_of_ExeFile))  # getting all txt files from directory
