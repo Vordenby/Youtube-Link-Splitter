@@ -5,24 +5,13 @@ from openpyxl import Workbook
 
 path_of_ExeFile = os.path.abspath(__file__)  # Absolute path to executable
 
-IsDirForFiles = False
-
-for file in os.listdir(path_of_ExeFile.replace('MainSplit.py', '')):
-    if file == "text_files":
-        IsDirForFiles = True
-
-if not IsDirForFiles:
-    PathToDir = os.path.join((path_of_ExeFile.replace('MainSplit.py', '')), "text_files")
-
-    os.mkdir(PathToDir)
-
-print("Throw your .txt files in folder — text_files")
+print("Throw your .txt files in folder where Executable is located")
 input("Press enter if you're ready")
 
-path_of_ExeFile = path_of_ExeFile.replace("MainSplit.py", "text_files\\")  # Changing path where's .txt files located
+path_of_ExeFile = path_of_ExeFile.replace("MainSplit.py", "")  # Changing path where's .txt files located
 
 
-def find_txt(dir):  # The function can get all txt files in the directory "text_files"
+def find_txt(dir):  # The function can get all txt files
     files = []
     for file in os.listdir(dir):
         if file.endswith(".txt"):
@@ -41,7 +30,7 @@ def Find_Links(pattern, text):
 
 
 for file in Text_Files:
-    S = open(f'text_files/{file}', encoding="utf8").read()
+    S = open(f'{file}', encoding="utf8").read()
     IDs = Find_Links(Youtube_Regex_Pattern, S)
     Links = []
     for ID in IDs:
