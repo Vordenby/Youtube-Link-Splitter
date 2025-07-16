@@ -2,11 +2,11 @@
 
 
 a = Analysis(
-    ['MainSplit.py'],
+    ['Mainsplit.py'],
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=['pandas', 'os', 'openpyxl', 're', 'sys', 'pathlib'],
+    hiddenimports=['pandas', 'os', 're', 'sys', 'openpyxl', 'pathlib'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='MainSplit',
+    name='Mainsplit',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

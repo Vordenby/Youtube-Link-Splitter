@@ -10,7 +10,7 @@ if getattr(sys, 'frozen', False):
 else:
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 if getattr(sys, "frozen", False):
-        path_of_ExeFile = Path(sys.executable).parent
+        path_of_ExeFile = str(Path(sys.executable).parent)
 else:path_of_ExeFile = str(Path(__file__).resolve().parent) # Absolute path to executable
 
 print("Throw your .txt files in folder where Executable is located")
@@ -28,7 +28,7 @@ if sys.platform == "win32":
 def find_txt(dir):  # The function can get all txt files
     files = []
     for file in os.listdir(dir):
-        if file.endswith(".txt"):
+        if str(file).endswith(".txt"):
             print(file)
             files.append(os.path.join(file))
     return files
@@ -36,7 +36,6 @@ def find_txt(dir):  # The function can get all txt files
 
 print(path_of_ExeFile)
 Text_Files = find_txt(os.path.dirname(path_of_ExeFile))  # getting all txt files from directory
-
 Youtube_Regex_Pattern = r'https?://(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]+)'  # Finding all YouTube ID's from links
 
 
